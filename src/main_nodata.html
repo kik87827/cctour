@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+@@include('./include/head.html')
+<body class="front_body">
+	<div class="page_wrap">
+		@@include('./include/header.html')
+		<!-- middle -->
+		<section class="middle_zone">
+			<!-- main visual -->
+			<div class="mv_zone">
+				<a href="javascript:;" class="btn_mv_control prev_control"><span class="hdtext">이전</span></a>
+				<div class="swiper-container mv_container">
+					<div class="swiper-wrapper">
+						<div class="swiper-nodata">
+							<p class="nodata_para">데이터가 없습니다.</p>
+						</div>
+					</div>
+				</div>
+				<a href="javascript:;" class="btn_mv_control next_control"><span class="hdtext">다음</span></a>
+				<div class="mv_bottom_control_wrap">
+					<div class="mv_bottom_in_control">
+						<div class="mv_bottom_cols has_navi">
+							<div class="swiper-pagination main_visual_paging">
+							</div>
+						</div>
+						<div class="mv_bottom_cols has_auto">
+							<ul class="swiper_auto_control_list">
+								<li><a href="#" class="btn_mv_stop"><span class="hdtext">정지</span></a></li>
+								<li><a href="#" class="btn_mv_play"><span class="hdtext">재생</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="mvlayer_parent">
+					<div class="search_field_wrap">
+						<a href="#" class="search_field_cols define_local" id="local_target" data-poslayer="#layer_box_01">
+							<div class="search_field_form">
+								<div class="search_form_label">지역</div>
+								<div class="search_form_text_g">
+									<div class="search_form_text_place">어디로 가세요?</div>
+									<div class="search_form_text_result"></div>
+								</div>
+							</div>
+						</a>
+						<a href="#" class="search_field_cols define_theme" id="theme_target" data-poslayer="#layer_box_02">
+							<div class="search_field_form">
+								<div class="search_form_label">테마</div>
+								<div class="search_form_text_g">
+									<div class="search_form_text_place">취향에 맞는 상품을 원하세요?</div>
+									<div class="search_form_text_result"></div>
+								</div>
+							</div>
+						</a>
+						<a href="#" class="search_field_cols define_start" id="start_target" data-poslayer="#layer_box_03">
+							<div class="search_field_form">
+								<div class="search_form_label">출발일</div>
+								<div class="search_form_text_g">
+									<div class="search_form_text_place">날짜를 입력하세요</div>
+									<div class="search_form_text_result"></div>
+								</div>
+							</div>
+						</a>
+						<div class="search_field_cols define_btn">
+							<a href="#" class="btn_search_form"><span class="hdtext">검색</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // main visual -->
+			<script>
+				document.addEventListener("DOMContentLoaded", () => {
+					mainVisual();
+				});
+				$(function () {
+					var start_date_div = $("#start_date_div");
+					var date_div_parent = start_date_div.parents(".poslayer_z");
+					// 픽업 레이어 달력
+					start_date_div.datepicker({
+						beforeShow: function () {
+							start_date_div.find(".ui-datepicker-next , .ui-datepicker-prev").addClass("layer_in_control");
+							parentDateUpdate();
+						},
+						onSelect: function () {
+							start_date_div.find(".ui-datepicker-next , .ui-datepicker-prev").addClass("layer_in_control");
+							parentDateUpdate();
+						},
+						onChangeMonthYear: function () {
+							start_date_div.find(".ui-datepicker-next , .ui-datepicker-prev").addClass("layer_in_control");
+							parentDateUpdate();
+						}
+					});
+					start_date_div.find(".ui-datepicker-next , .ui-datepicker-prev").addClass("layer_in_control");
+					parentDateUpdate();
+
+					function parentDateUpdate() {
+						var getDate = start_date_div.datepicker("getDate");
+						var monthText = String(getDate.getMonth()).length == 1 ? `0${getDate.getMonth()}` : getDate.getMonth();
+						var dateText = String(getDate.getDate()).length == 1 ? `0${getDate.getDate()}` : getDate.getDate();
+						date_div_parent.attr("data-date", getDate.getFullYear() + "-" + monthText + "-" + dateText)
+					}
+				});
+			</script>
+			<!-- main contents -->
+			<div class="mc_zone">
+				<div class="mc_row vertical_item">
+					<div class="vertical_title_row"><p class="vertical_title">무안출발 - 해외골프</p></div>
+					<div class="vertical_slider_row">
+						<div class="swiper_slider_item" id="global_swiper">
+							<div class="btn_slider_control_wrap left_pos"><a href="javascript:;" class="btn_slider_control prev_control"><span class="hdtext">이전</span></a></div>
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-nodata type2">
+										<p class="nodata_para">데이터가 없습니다.</p>
+									</div>
+								</div>
+								<div class="swiper-pagination mc_paging">
+								</div>
+							</div>
+							<div class="btn_slider_control_wrap right_pos"><a href="javascript:;" class="btn_slider_control next_control"><span class="hdtext">다음</span></a></div>
+						</div>
+					</div>
+					<script>
+						mcGlobalSwiper();
+						// mcGlobalSwiperUpdate(); drawcallback
+					</script>
+				</div>
+				<div class="mc_row vertical_item">
+					<div class="vertical_title_row"><p class="vertical_title">무안출발 - 해외패키지</p></div>
+					<div class="vertical_slider_row">
+						<div class="swiper_slider_item" id="global_swiper2">
+							<div class="btn_slider_control_wrap left_pos"><a href="javascript:;" class="btn_slider_control prev_control"><span class="hdtext">이전</span></a></div>
+							<div class="swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-nodata type2">
+										<p class="nodata_para">데이터가 없습니다.</p>
+									</div>
+								</div>
+								<div class="swiper-pagination mc_paging">
+								</div>
+							</div>
+							<div class="btn_slider_control_wrap right_pos"><a href="javascript:;" class="btn_slider_control next_control"><span class="hdtext">다음</span></a></div>
+						</div>
+					</div>
+					<script>
+						mcGlobalSwiper2();
+						// mcGlobalSwiperUpdate2(); drawcallback
+					</script>
+				</div>
+				<div class="mc_row vertical_item fulltype">
+					<div class="mc_full_item_inner">
+						<div class="mc_bull_tab_bg"></div>
+						<div class="mc_full_tab_cols">
+							<div class="mc_full_title_group">
+								<p class="mc_full_main_title">MD PICK</p>
+								<p class="mc_full_sub_title">국내골프 추천상품</p>
+							</div>
+							<p class="mc_full_add_copy">씨씨투어 추천 국내골프</p>
+							<ul class="mc_vtab_list">
+								<li><a href="#" class="mc_vtab active">전남 무안</a></li>
+								<li><a href="#" class="mc_vtab">경남부산</a></li>
+								<li><a href="#" class="mc_vtab">경북  대구</a></li>
+							</ul>
+						</div>
+						<div class="mc_full_slider_cols">
+							<!--  -->
+							<div class="swiper_slider_item dtype2" id="mdpick_swiper">
+								<div class="swiper-container">
+									<div class="swiper-wrapper">
+										<div class="swiper-nodata type2">
+											<p class="nodata_para">데이터가 없습니다.</p>
+										</div>
+									</div>
+									<div class="swiper-pagination mc_paging type2">
+									</div>
+								</div>
+							</div>
+							<!-- // -->
+						</div>
+					</div>
+				</div>
+				<script>
+					mdPickSwiper();
+					// mdPickSwiperUpdate(); drawcallback
+				</script>
+				<div class="mc_row else_guide_type">
+					<p class="mc_else_guide_title">여행 후기</p>
+					<div class="mc_else_content">
+						<div class="mc_else_crow">
+							<div class="mc_else_grid_list">
+								<a href="#" class="mc_else_grid_item">
+									<div class="mc_else_grid_title_w"><div class="mc_else_grid_title">사이판골프여행, 사이판3색골프, 사이판골프</div></div>
+									<div class="mc_else_grid_spec">
+										<div class="mc_else_grid_spec_text">
+											여행과 변화를 사랑하는 사람은 생명을 가진 사람이라고 바그너는 말했다. 오랜 기간 코로나19로 인해 미증여행과 변화를 사랑하는 사람은 생명을 가진 사람이라고 바그너는 말했다. 오랜 기간 코로나19로 인해 미증
+										</div>
+										<div class="mc_else_grid_spec_photo"><img src="images/mc_review_img_01.jpg" alt=""></div>
+									</div>
+								</a>
+								<a href="#" class="mc_else_grid_item">
+									<div class="mc_else_grid_title_w"><div class="mc_else_grid_title">해외골프여행, 라오라오cc, 코럴오션cc test test test test test</div></div>
+									<div class="mc_else_grid_spec">
+										<div class="mc_else_grid_spec_text">
+											여행과 변화를 사랑하는 사람은 생명을 가진 사람이라고 바그너는 말했다. 오랜 기간 코로나19로 인해 미증여행과 변화를 사랑하는 사람은 생명을 가진 사람이라고 바그너는 말했다. 오랜 기간 코로나19로 인해 미증
+										</div>
+										<div class="mc_else_grid_spec_photo"><img src="images/mc_review_img_02.jpg" alt=""></div>
+									</div>
+								</a>
+								<a href="#" class="mc_else_grid_item">
+									<div class="mc_else_grid_title_w"><div class="mc_else_grid_title">골프패키지 다산베아채CC /  무등산CC test test test test test test</div></div>
+									<div class="mc_else_grid_spec">
+										<div class="mc_else_grid_spec_text">
+											여행을 하는 이유는 다양하다. 어떤 때는 현실도피를 위해 어떤 때는 정해진 휴식 시간을 잘 보낼 가장 좋여행을 하는 이유는 다양하다. 어떤 때는 현실도피를 위해 어떤 때는 정해진 휴식 시간을 잘 보낼 가장 좋
+										</div>
+										<div class="mc_else_grid_spec_photo"><img src="images/mc_review_img_03.jpg" alt=""></div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="mc_else_crow">
+							<div class="mc_else_grid_list type2">
+								<div class="mc_else_grid_box">
+									<div class="mc_else_grid_ico"></div>
+									<div class="mc_else_grid_spec_g">
+										<p class="mc_else_grid_spec_label">씨씨투어 고객센터</p>
+										<div class="mc_else_grid_main_copy_g">
+											<p class="mc_else_grid_main_copy">061-535-3352</p>
+											<p class="mc_else_grid_sub_copy">평일 09:30 ~ 18:30</p>
+										</div>
+										<ul class="mc_else_grid_add_text_list">
+											<li>점심시간 13:00 ~ 14:00</li>
+											<li>토요일/일요일/공휴일은 휴무</li>
+										</ul>
+									</div>
+								</div>
+								<div class="mc_else_grid_box">
+									<div class="mc_else_grid_ico type2"></div>
+									<div class="mc_else_grid_spec_g">
+										<p class="mc_else_grid_spec_label type2">BANK INFO</p>
+										<div class="mc_else_grid_main2_copy_g">
+											<p class="mc_else_grid_sub_copy">국민은행</p>
+											<p class="mc_else_grid_main2_copy">479001-01-278221</p>
+										</div>
+										<p class="mc_else_cash_text">예금주 ㈜씨씨투어</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // main contents -->
+		</section>
+		<!-- // middle -->
+		@@include('./include/footer.html')
+
+		<!-- layer -->
+		<div class="poslayer_z" id="layer_box_01">
+            <div class="poslayer_titlow">
+                <p class="poslayer_tit">지역선택</p>
+            </div>
+            <div class="poslayer_contlow">
+                <div class="pcont_w">
+                    <div class="pclayer_scr_w">
+                        <ul class="pclayer_vlist">
+                            <li><a href="javascript:;" class="pcv_chk">태국</a></li>
+                            <li><a href="javascript:;" class="pcv_chk">홍콩</a></li>
+                            <li><a href="javascript:;" class="pcv_chk">대만</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn_psubmit_w">
+                    <a href="#" class="btn_psubmit">적용</a>
+                </div>
+            </div>
+            <button type="button" class="layerclose"><span class="hdtext">닫기</span></button>
+        </div>
+
+		<div class="poslayer_z" id="layer_box_02">
+            <div class="poslayer_titlow">
+                <p class="poslayer_tit">테마선택</p>
+            </div>
+            <div class="poslayer_contlow">
+                <div class="pcont_w">
+                    <div class="pclayer_scr_w">
+                        <ul class="pclayer_vlist">
+                            <li><a href="#" class="pcv_chk">태국골프</a></li>
+                            <li><a href="#" class="pcv_chk">대만골프</a></li>
+                            <li><a href="#" class="pcv_chk">태국패키지</a></li>
+                            <li><a href="#" class="pcv_chk">홍콩패키지</a></li>
+                            <li><a href="#" class="pcv_chk">대만패키지</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn_psubmit_w">
+                    <a href="#" class="btn_psubmit">적용</a>
+                </div>
+            </div>
+            <button type="button" class="layerclose"><span class="hdtext">닫기</span></button>
+        </div>
+		
+		<div class="poslayer_z wtype2" id="layer_box_03">
+            <div class="poslayer_titlow">
+                <p class="poslayer_tit">출발일 선택</p>
+            </div>
+            <div class="poslayer_contlow">
+                <div class="pcont_w">
+                    <div class="insert_date_parent" id="start_date_div">
+
+					</div>
+                </div>
+                <div class="btn_psubmit_w">
+                    <a href="#" class="btn_psubmit">적용</a>
+                </div>
+            </div>
+            <button type="button" class="layerclose"><span class="hdtext">닫기</span></button>
+        </div>
+		<!-- // layer -->
+
+	</div>
+</body>
+</html>
